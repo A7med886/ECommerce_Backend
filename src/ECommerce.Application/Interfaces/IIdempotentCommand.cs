@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace ECommerce.Application.Features.Commands
+namespace ECommerce.Application.Interfaces
 {
     public interface IIdempotentCommand //<TResponse> : IRequest<TResponse>
     {

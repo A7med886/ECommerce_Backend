@@ -1,5 +1,4 @@
-﻿using ECommerce.Application.Features.Commands;
-using MediatR;
+﻿using MediatR;
 using Microsoft.Extensions.Caching.Hybrid;
 
 namespace ECommerce.Application.Behaviors
