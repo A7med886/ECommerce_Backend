@@ -155,7 +155,7 @@ using (var scope = app.Services.CreateScope())
     }
     catch (Exception ex)
     {
-        Console.WriteLine($"MyError:{ex.Message}");
+        Console.WriteLine($"DB Error:{ex.Message}");
     }
 }
 
