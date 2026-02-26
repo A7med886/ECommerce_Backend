@@ -1,0 +1,21 @@
+# Update database
+dotnet ef migrations add InitialCreate --project src/ECommerce.Infrastructure --startup-project src/ECommerce.API
+dotnet ef database update --project src/ECommerce.Infrastructure --startup-project src/ECommerce.API
+
+# Run the API
+cd src/ECommerce.API
+dotnet run
+
+
+
+ <!-- Set Environment -->
+        <environmentVariable name="ASPNETCORE_ENVIRONMENT" value="Production" />
+
+        <!-- Production Connection String -->
+        <environmentVariable 
+            name="ConnectionStrings__DefaultConnection" 
+            value="Server=YOUR_SQL_SERVER;Database=YOUR_DB;User Id=YOUR_USER;Password=YOUR_PASSWORD;TrustServerCertificate=True;" />
+
+        <environmentVariable 
+            name="Jwt__Key" 
+            value="YourSuperSecretProductionKey" />

@@ -108,7 +108,10 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAngular", policy =>
     {
-        policy.WithOrigins("http://localhost:4200")
+        policy.WithOrigins(
+            "http://localhost:4200", 
+            "https://e-commerce-frontend-gamma-henna.vercel.app",
+            "https://www.ecommerce-frontend.ahmedtarek-dev.website")
               .AllowAnyMethod()
               .AllowAnyHeader()
               .AllowCredentials();
@@ -139,12 +142,21 @@ app.UseMiddleware<IdempotencyMiddleware>();
 
 app.MapControllers();
 
+app.MapGet("/", () => "API is running");
+
 // Seed database
 using (var scope = app.Services.CreateScope())
 {
-    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    context.Database.Migrate();
-    await DbInitializer.SeedAsync(context);
+    try
+    {
+        var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        context.Database.Migrate();
+        await DbInitializer.SeedAsync(context);
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"MyError:{ex.Message}");
+    }
 }
 
 // MAP HUB
